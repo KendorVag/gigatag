@@ -33,7 +33,8 @@
       width: 100%;
       box-sizing: border-box;
       position: relative;
-      z-index: 1;
+      opacity: 1;
+      transition: opacity 2s ease-in-out;
     }
 
     h1 {
@@ -87,32 +88,6 @@
       opacity: 0.8;
     }
 
-    /* Эффект сжигания */
-    .burn-effect {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, #ff0000, #ff8800, #ff00ff, #00ffff);
-      background-size: 400% 400%;
-      animation: burnAnimation 5s infinite;
-      z-index: -1;
-      display: none;
-    }
-
-    @keyframes burnAnimation {
-      0% {
-        background-position: 0 0;
-      }
-      50% {
-        background-position: 100% 100%;
-      }
-      100% {
-        background-position: 0 0;
-      }
-    }
-
     /* Кнопка Telegram */
     .telegram-btn {
       background-color: #0088cc;
@@ -132,31 +107,28 @@
     </div>
     <h1>Это сайт для звуков NFC-меток</h1>
     <p>Когда вы сканируете NFC-метку, она направляет вас сюда, где автоматически воспроизводится громкий мемный звук.</p>
-    <p class="note">Сделано на коленке. Идея позаимствована у <strong>soundtag</strong>.</p>
+    <p class="note">Сделано на коленке. Идея позаимствована у <strong>sndtag.ru</strong>.</p>
     
     <!-- Кнопки -->
-    <a href="https://t.me/your_telegram_channel" target="_blank">
+    <a href="https://t.me/+4_BiUAKrE28yODVi" target="_blank">
       <button class="button telegram-btn">Перейти в Telegram</button>
     </a>
-    <button class="button" id="burnButton">Сжечь сайт</button>
+    <button class="button" id="fadeButton">Постепенно исчезнуть</button>
   </div>
-
-  <!-- Эффект сжигания -->
-  <div class="burn-effect" id="burnEffect"></div>
 
   <script>
     // Получаем элементы
-    const burnButton = document.getElementById('burnButton');
-    const burnEffect = document.getElementById('burnEffect');
+    const fadeButton = document.getElementById('fadeButton');
+    const container = document.querySelector('.container');
 
-    // Функция сжигания сайта
-    burnButton.addEventListener('click', () => {
-      // Показываем эффект сжигания
-      burnEffect.style.display = 'block';
+    // Функция для постепенного исчезновения и возвращения элементов
+    fadeButton.addEventListener('click', () => {
+      // Постепенно скрываем контейнер
+      container.style.opacity = '0';
 
-      // Через 5 секунд возвращаем сайт в исходное состояние
+      // Через 5 секунд возвращаем контейнер обратно
       setTimeout(() => {
-        burnEffect.style.display = 'none';
+        container.style.opacity = '1';
       }, 5000);
     });
   </script>
