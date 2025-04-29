@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Не удалось подключиться к сайту</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      overflow: hidden;
+    }
+
+    #error-screen, #main-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .error-box h1 {
+      color: #757575;
+    }
+
+    .error-code {
+      font-size: 20px;
+      margin-top: 10px;
+      color: #80868b;
+    }
+
+    .hidden-content {
+      background-color: #202124;
+      color: white;
+    }
+
+    .circle-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-bottom: 20px;
+      border: 4px solid white;
+    }
+
+    .circle-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mute-button {
+      background-color: #444;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    .mute-button:hover {
+      opacity: 1;
+    }
+
+    .click-catcher {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      cursor: pointer;
+      background: transparent;
+      z-index: 999;
+    }
+  </style>
+
+</head>
+<body>
+
+  <!-- Фейковая ошибка -->
+  <div class="error-box" id="error-screen">
+    <img src="https://www.gstatic.com/images/icons/material/system/2x/error_outline_grey600_48dp.png" alt="Ошибка">
+    <h1>Не удалось подключиться к сайту</h1>
+    <div>	
+ce28874.tw1.ru не разрешает подключение.</div>
+    <div class="error-code">ERR_CONNECTION_REFUSED</div>
+  </div>
+
+  <!-- Основной контент -->
+  <div class="hidden-content" id="main-content" style="display: none;">
+    <div class="circle-image">
+      <img src="https://github.com/KendorVag/675hgfghgfvfdvfdvdfasdasdsdas21312312/raw/refs/heads/main/ded.png" alt="ded">
+    </div>
+    <button class="mute-button">🔇 Заглушить</button>
+  </div>
+
+  <!-- Прозрачная кнопка -->
+  <div class="click-catcher" id="click-catcher"></div>
+
+  <!-- Аудио -->
+  <audio id="my-audio" loop>
+    <source src="https://github.com/KendorVag/675hgfghgfvfdvfdvdfasdasdsdas21312312/raw/refs/heads/main/off.mp3" type="audio/mpeg">
+    Ваш браузер не поддерживает воспроизведение аудио.
+  </audio>
+
+  <script>
+    const clickCatcher = document.getElementById("click-catcher");
+    const errorScreen = document.getElementById("error-screen");
+    const mainContent = document.getElementById("main-content");
+    const audio = document.getElementById("my-audio");
+
+    clickCatcher.addEventListener("click", () => {
+      errorScreen.style.display = "none";
+      mainContent.style.display = "flex";
+      clickCatcher.style.display = "none";
+
+      // Воспроизведение звука
+      audio.play().catch(err => {
+        console.error("Ошибка воспроизведения:", err);
+      });
+    });
+
+    document.querySelector(".mute-button").addEventListener("click", () => {
+      alert("ЛООООЛ))");
+    });
+  </script>
+</body>
+</html>
