@@ -82,10 +82,12 @@
       margin: 10px;
       cursor: pointer;
       transition: all 0.3s ease;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .button:hover {
       opacity: 0.8;
+      transform: translateY(-3px);
     }
 
     /* Кнопка Telegram */
@@ -96,41 +98,109 @@
     .telegram-btn:hover {
       background-color: #007bb5;
     }
+
+    /* Кнопка Поделиться */
+    .share-btn {
+      background-color: #e60000;
+      color: white;
+    }
+
+    .share-btn:hover {
+      background-color: #c20000;
+    }
+
+    /* Счетчик посещений */
+    .visitor-count {
+      font-size: 36px;
+      color: #00e600;
+      font-weight: bold;
+      margin: 20px 0;
+      transition: all 0.3s ease;
+    }
+
+    /* Эффект исчезновения */
+    .hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
   </style>
 </head>
 <body>
 
   <!-- Основной контент -->
-  <div class="container">
+  <div class="container" id="content">
     <div class="circle-image">
       <img src="https://github.com/KendorVag/675hgfghgfvfdvfdvdfasdasdsdas21312312/raw/refs/heads/main/main.png" alt="ded">
     </div>
     <h1>Это сайт для звуков NFC-меток</h1>
     <p>Когда вы сканируете NFC-метку, она направляет вас сюда, где автоматически воспроизводится громкий мемный звук.</p>
     <p class="note">Сделано на коленке. Идея позаимствована у <strong>sndtag.ru</strong>.</p>
-    
+
+    <!-- Фейковый счетчик -->
+    <div class="visitor-count" id="visitorCount">13</div>
+
     <!-- Кнопки -->
-    <a href="https://t.me/+4_BiUAKrE28yODVi" target="_blank">
+    <a href="https://t.me/your_telegram_channel" target="_blank">
       <button class="button telegram-btn">Перейти в Telegram</button>
     </a>
-    <button class="button" id="fadeButton">УДАЛИТЬ САЙТ К ЧЕРТЯМ!!!</button>
+    <button class="button share-btn" onclick="shareSite()">Поделиться</button>
+    <button class="button" id="deleteButton" onclick="deleteSite()">Удалить сайт к чертям!</button>
   </div>
 
   <script>
-    // Получаем элементы
-    const fadeButton = document.getElementById('fadeButton');
-    const container = document.querySelector('.container');
+    // Функция для фейкового счетчика
+    let fakeCount = 13; // Начальное значение счетчика
+    const visitorCountElement = document.getElementById('visitorCount');
 
-    // Функция для постепенного исчезновения и возвращения элементов
-    fadeButton.addEventListener('click', () => {
-      // Постепенно скрываем контейнер
-      container.style.opacity = '0';
+    function updateVisitorCount() {
+      // Генерируем случайное значение от 3 до 15
+      let randomChange = Math.floor(Math.random() * 3) + 3; // Случайное изменение в пределах от 3 до 15
+      fakeCount = fakeCount + (Math.random() < 0.5 ? randomChange : -randomChange); // Уменьшаем или увеличиваем
 
-      // Через 5 секунд возвращаем контейнер обратно
+      // Ограничиваем диапазон от 3 до 15
+      if (fakeCount < 3) fakeCount = 3;
+      if (fakeCount > 15) fakeCount = 15;
+
+      // Плавно обновляем счетчик
+      visitorCountElement.textContent = fakeCount;
+
+      // Через случайные промежутки времени вызываем обновление счетчика
+      setTimeout(updateVisitorCount, Math.random() * 5000 + 3000); // Обновление будет происходить каждые 3-8 секунд
+    }
+
+    // Начинаем обновление счетчика
+    updateVisitorCount();
+
+    // Функция для поделиться
+    function shareSite() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'Сайт для звуков NFC-меток',
+          url: window.location.href
+        }).then(() => {
+          console.log('Сайт был успешно отправлен');
+        }).catch((error) => {
+          console.log('Ошибка: ', error);
+        });
+      } else {
+        alert('Ваш браузер не поддерживает функцию".');
+      }
+    }
+
+    // Функция для "удаления" сайта
+    function deleteSite() {
+      // Добавляем эффект исчезновения всех элементов
+      const content = document.getElementById('content');
+      content.classList.add('hidden');
+      
+      // Через 5 секунд возвращаем сайт обратно
       setTimeout(() => {
-        container.style.opacity = '1';
+        content.classList.remove('hidden');
+        fakeCount = 13; // Сброс счетчика
+        visitorCountElement.textContent = fakeCount; // Возвращаем начальное значение
       }, 5000);
-    });
+    }
   </script>
 
 </body>
