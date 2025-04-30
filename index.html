@@ -109,15 +109,6 @@
       background-color: #c20000;
     }
 
-    /* Счетчик посещений */
-    .visitor-count {
-      font-size: 36px;
-      color: #00e600;
-      font-weight: bold;
-      margin: 20px 0;
-      transition: all 0.3s ease;
-    }
-
     /* Эффект исчезновения */
     .hidden {
       opacity: 0;
@@ -141,7 +132,7 @@
     <div class="visitor-count" id="visitorCount">13</div>
 
     <!-- Кнопки -->
-    <a href="https://t.me/your_telegram_channel" target="_blank">
+    <a href="https://t.me/+4_BiUAKrE28yODVi" target="_blank">
       <button class="button telegram-btn">Перейти в Telegram</button>
     </a>
     <button class="button share-btn" onclick="shareSite()">Поделиться</button>
@@ -149,28 +140,6 @@
   </div>
 
   <script>
-    // Функция для фейкового счетчика
-    let fakeCount = 13; // Начальное значение счетчика
-    const visitorCountElement = document.getElementById('visitorCount');
-
-    function updateVisitorCount() {
-      // Генерируем случайное значение от 3 до 15
-      let randomChange = Math.floor(Math.random() * 3) + 3; // Случайное изменение в пределах от 3 до 15
-      fakeCount = fakeCount + (Math.random() < 0.5 ? randomChange : -randomChange); // Уменьшаем или увеличиваем
-
-      // Ограничиваем диапазон от 3 до 15
-      if (fakeCount < 3) fakeCount = 3;
-      if (fakeCount > 15) fakeCount = 15;
-
-      // Плавно обновляем счетчик
-      visitorCountElement.textContent = fakeCount;
-
-      // Через случайные промежутки времени вызываем обновление счетчика
-      setTimeout(updateVisitorCount, Math.random() * 5000 + 3000); // Обновление будет происходить каждые 3-8 секунд
-    }
-
-    // Начинаем обновление счетчика
-    updateVisitorCount();
 
     // Функция для поделиться
     function shareSite() {
