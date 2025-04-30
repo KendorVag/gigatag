@@ -63,12 +63,23 @@
       margin-bottom: 20px;
       border: 4px solid white;
       margin: 0 auto;
+      animation: spin 4s infinite linear; /* Анимация вращения */
     }
 
     .circle-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    /* Анимация для логотипа */
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
     }
 
     /* Кнопки */
@@ -122,10 +133,10 @@
   <!-- Основной контент -->
   <div class="container" id="content">
     <div class="circle-image">
-      <img src="https://github.com/KendorVag/675hgfghgfvfdvfdvdfasdasdsdas21312312/raw/refs/heads/main/giga.png" alt="ded">
+      <img src="https://github.com/KendorVag/675hgfghgfvfdvfdvdfasdasdsdas21312312/raw/refs/heads/main/giga.png" alt="GIGA-TAG">
     </div>
-    <h1>GIGA-TAG</h1>
-    <p>Когда вы сканируете NFC-метку, она направляет вас сюда, где автоматически воспроизводится громкий мемный звук.</p>
+    <h1>Добро пожаловать в GIGA-TAG</h1>
+    <p>Когда вы сканируете NFC-метку, она направляет вас сюда, где автоматически воспроизводится нужный звук.</p>
     <p class="note">Сделано на коленке. Идея позаимствована у <strong>sndtag.ru</strong>.</p>
 
     <!-- Кнопки -->
@@ -137,12 +148,11 @@
   </div>
 
   <script>
-
     // Функция для поделиться
     function shareSite() {
       if (navigator.share) {
         navigator.share({
-          title: 'Сайт для звуков NFC-меток',
+          title: 'GIGA-TAG',
           url: window.location.href
         }).then(() => {
           console.log('Сайт был успешно отправлен');
@@ -150,7 +160,7 @@
           console.log('Ошибка: ', error);
         });
       } else {
-        alert('Ваш браузер не поддерживает функцию".');
+        alert('Ваш браузер не поддерживает функцию "Поделиться".');
       }
     }
 
@@ -163,8 +173,6 @@
       // Через 5 секунд возвращаем сайт обратно
       setTimeout(() => {
         content.classList.remove('hidden');
-        fakeCount = 13; // Сброс счетчика
-        visitorCountElement.textContent = fakeCount; // Возвращаем начальное значение
       }, 5000);
     }
   </script>
